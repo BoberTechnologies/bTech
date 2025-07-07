@@ -359,7 +359,7 @@
 
         <section id="section5" class="section">
             <div class="contact-container">
-                <form action="https://api.web3forms.com/submit" method="POST"> 
+                <form id="contact-form" action="https://api.web3forms.com/submit" method="POST"> 
                     <h2>
                         <span>
                           <span class="accent" data-i18n-key="section5.get"></span>
@@ -371,11 +371,12 @@
 
                     <input name="name" type="text" class="feedback-input" placeholder="Name" required/>   
                     <input name="email" type="email" class="feedback-input" placeholder="Email" required/>
-                    <input name="tel" type="tel" class="feedback-input" placeholder="Phone (optional)" pattern="^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$"/>
+                    <input name="tel" type="tel" class="feedback-input" placeholder="Phone (optional)"/>
                     <textarea name="text" class="feedback-input" placeholder="Message" maxlength="300" required></textarea>
                     <input type="text" name="honeypot" style="display:none">
                     <button type="submit" class="submit-btn"><span data-i18n-key="section5.send"></span></button>
                 </form>
+                <div id="form-status"></div>
                 <div class="contact-image">
                     <img loading="lazy" src="res/contact.png" alt="Contact illustration" class="contact-img">
                 </div>
@@ -444,6 +445,47 @@
     document.addEventListener('DOMContentLoaded', () => {
       setLang(currentLang);
     });
+
+    document.getElementById("contact-form").addEventListener("submit", async function(e) {
+  e.preventDefault(); // 🔴 Previne trimiterea tradițională
+
+  const form = e.target;
+  const formData = new FormData(form);
+
+  // Get current language and load dictionary
+  const lang = localStorage.getItem('lang') || 'en';
+  let dict = {};
+  try {
+    dict = await fetch(`lang/${lang}.json`).then(res => res.json());
+  } catch (e) {}
+  const status = dict.form_status || {};
+
+  // Validation: name, email, and text (message) are required
+  const formValues = Object.fromEntries(formData.entries());
+  if (!formValues.name || !formValues.email || !formValues.text) {
+    alert(status.validation_error || "Please fill in all required fields.");
+    return;
+  }
+
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      alert(status.success || "Message sent successfully!");
+      form.reset();
+    } else {
+      alert((status.error || "Error: ") + (result.message || status.error_default || "Submission failed."));
+    }
+  } catch (error) {
+    alert(status.network_error || "Network error. Please try again.");
+  }
+});
+
     </script>
 </body>
 </html>

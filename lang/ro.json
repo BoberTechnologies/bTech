@@ -76,5 +76,12 @@
     "get": "Hai",
     "in_touch": "să luăm legătura",
     "send": "Trimite"
+  },
+  "form_status": {
+    "success": "Mesaj trimis cu succes!",
+    "error": "Eroare: ",
+    "error_default": "Trimitere eșuată.",
+    "network_error": "Eroare de rețea. Încearcă din nou.",
+    "validation_error": "Te rugăm să completezi toate câmpurile obligatorii."
   }
 } 

@@ -76,5 +76,12 @@
     "get": "Get",
     "in_touch": "in touch with us",
     "send": "Send"
+  },
+  "form_status": {
+    "success": "Message sent successfully!",
+    "error": "Error: ",
+    "error_default": "Submission failed.",
+    "network_error": "Network error. Please try again.",
+    "validation_error": "Please fill in all required fields."
   }
 } 
