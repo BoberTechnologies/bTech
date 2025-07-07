@@ -1,0 +1,80 @@
+{
+  "header": {
+    "nav": {
+      "about": "Despre",
+      "services": "Servicii",
+      "development": "Dezvoltare",
+      "contact": "Contact"
+    },
+    "dot_nav": {
+      "home": "Acasă",
+      "about": "Despre",
+      "services": "Servicii",
+      "development": "Dezvoltare",
+      "contact": "Contact"
+    }
+  },
+  "section1": {
+    "hero_title": {
+      "your_ideas": "Ideile tale",
+      "made_real": "devenite realitate"
+    }
+  },
+  "section2": {
+    "who": "Cine",
+    "we_are": "suntem",
+    "company_name": "BOBER TECHNOLOGIES",
+    "company_intro": "transformă idei inovative în soluții software puternice.",
+    "main_block": "Suntem specializați în crearea de aplicații personalizate care se potrivesc perfect viziunii tale - de la proiecte personale la sisteme enterprise.",
+    "closing_block": "Echipa noastră combină cunoștințele tehnice avansate cu designul creativ pentru a livra rezultate excepționale. Suntem aici pentru a ajuta visătorii, antreprenorii și afacerile să-și aducă ideile la viață prin tehnologie."
+  },
+  "section3": {
+    "services": "Servicii",
+    "software_development": "Dezvoltare Software",
+    "custom": "Soluții",
+    "software_solutions": "Software personalizate",
+    "mobile": "Aplicații",
+    "applications_mobile": "Mobile",
+    "web": "Aplicații",
+    "applications_web": "Web",
+    "enterprise": "Software",
+    "software_enterprise": "Enterprise",
+    "consultancy": "Consultanță",
+    "it": "Strategii",
+    "strategy": "IT",
+    "business": "Optimizare",
+    "process_optimization": "Procese de afaceri",
+    "data": "Analiza",
+    "analytics": "Datelor",
+    "business_intelligence": "Business Intelligence",
+    "software_architecture": "Arhitectură ",
+    "architecture_design": "Software și Design",
+    "other": "Altele",
+    "uiux": "UI/UX",
+    "design": "Design",
+    "technical": "Asistență",
+    "support_troubleshooting": "Tehnică și Depanare",
+    "database_management": "Gestionare",
+    "management": "Baze de date",
+    "database_optimization": "Optimizare",
+    "optimization": "Baze de date"
+  },
+  "section4": {
+    "development": "Dezvoltarea",
+    "journey": "proiectului",
+    "consultations": "Consultări",
+    "consultations_intro": "Drumul către un software excelent începe prin înțelegerea poveștii tale.",
+    "consultations_desc": "Ne dedicăm timp pentru a înțelege viziunea și nevoile tale, creând cu grijă o soluție care aduce valoare afacerii tale și păstrează inovația în prim-plan.",
+    "development_process": "Procesul de dezvoltare",
+    "development_process_intro": "Pe tot parcursul fazei de dezvoltare, menținem o comunicare constantă pentru a ne asigura că produsul corespunde așteptărilor tale.",
+    "development_process_desc": "Apreciem feedback-ul tău și facem ajustările necesare.",
+    "delivery_support": "Livrare & Suport",
+    "delivery_support_intro": "După livrarea produsului, oferim suport complet pentru a asigura o implementare lină și un succes continuu.",
+    "delivery_support_desc": "Suntem aici să te sprijinim la fiecare pas."
+  },
+  "section5": {
+    "get": "Hai",
+    "in_touch": "să luăm legătura",
+    "send": "Trimite"
+  }
+} 

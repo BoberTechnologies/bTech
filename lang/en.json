@@ -1,0 +1,80 @@
+{
+  "header": {
+    "nav": {
+      "about": "About",
+      "services": "Services",
+      "development": "Development",
+      "contact": "Contact"
+    },
+    "dot_nav": {
+      "home": "Home",
+      "about": "About",
+      "services": "Services",
+      "development": "Development",
+      "contact": "Contact"
+    }
+  },
+  "section1": {
+    "hero_title": {
+      "your_ideas": "Your ideas",
+      "made_real": "made real"
+    }
+  },
+  "section2": {
+    "who": "Who",
+    "we_are": "we are",
+    "company_name": "BOBER TECHNOLOGIES",
+    "company_intro": "turns innovative ideas into powerful software solutions.",
+    "main_block": "We specialize in crafting custom applications that perfectly match your vision - from personal projects to enterprise systems.",
+    "closing_block": "Our team combines advanced technical knowledge with creative design to deliver exceptional results. We're here to help dreamers, entrepreneurs, and businesses bring their ideas to life through technology."
+  },
+  "section3": {
+    "services": "Services",
+    "software_development": "Software Development",
+    "custom": "Custom",
+    "software_solutions": "Software solutions",
+    "mobile": "Mobile",
+    "applications_mobile": "Applications",
+    "web": "Web",
+    "applications_web": "Applications",
+    "enterprise": "Enterprise",
+    "software_enterprise": "Software",
+    "consultancy": "Consultancy",
+    "it": "IT",
+    "strategy": "Strategy",
+    "business": "Business",
+    "process_optimization": "Process Optimization",
+    "data": "Data",
+    "analytics": "Analytics",
+    "business_intelligence": "Intelligence",
+    "software_architecture": "Software",
+    "architecture_design": "Architecture & Design",
+    "other": "Other",
+    "uiux": "UI/UX",
+    "design": "Design",
+    "technical": "Technical",
+    "support_troubleshooting": "Support & Troubleshooting",
+    "database_management": "Database",
+    "management": "Management",
+    "database_optimization": "Database",
+    "optimization": "Optimization"
+  },
+  "section4": {
+    "development": "Development",
+    "journey": "journey",
+    "consultations": "Consultations",
+    "consultations_intro": "The journey to great software starts with understanding your story.",
+    "consultations_desc": "We take the time to understand your vision and needs, carefully crafting a solution that brings value to your business while keeping innovation at heart.",
+    "development_process": "Development Process",
+    "development_process_intro": "Throughout the development phase, we maintain regular communication to ensure the product aligns with your expectations.",
+    "development_process_desc": "We value your feedback and make adjustments as needed.",
+    "delivery_support": "Delivery & Support",
+    "delivery_support_intro": "After delivering your product, we provide comprehensive support to ensure smooth implementation and continued success.",
+    "delivery_support_desc": "We're here to help you every step of the way."
+  },
+  "section5": {
+    "get": "Get",
+    "in_touch": "in touch with us",
+    "send": "Send"
+  }
+} 
