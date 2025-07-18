@@ -332,22 +332,6 @@ langToggle.addEventListener('click', () => {
   updateLanguage(newLang);
 });
 
-// GeoIP-based language detection
-fetch('https://ipapi.co/json')
-  .then(response => response.json())
-  .then(data => {
-    if (data.country_code === 'RO') {
-      updateLanguage('ro');
-    } else {
-      updateLanguage('en');
-    }
-  })
-  .catch(() => {
-    // fallback to English if geolocation fails
-    updateLanguage('en');
-  });
-
-
       let lastScrollY = window.scrollY;
       const toggleButton = document.getElementById('lang-toggle');
       

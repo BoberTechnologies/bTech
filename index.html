@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" lang="ro">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description" lang="ro" content="Transformăm idei inovatoare în soluții software puternice. De la consultanță la implementare, suntem partenerul tău tech.">
     <meta name="keywords" lang="ro" content="BOBER TECHNOLOGIES, dezvoltare web, dezvoltare software personalizată, dezvoltare aplicații mobile, consultanță IT, companie software, soluții software pentru afaceri, dezvoltare aplicații web, soluții cloud, externalizare software, software pentru întreprinderi, transformare digitală, mentenanță software, suport tehnic, integrare software, partener tehnologic">
@@ -419,7 +419,8 @@
     <script>
     // i18n language switching script
     const langToggle = document.getElementById('lang-toggle');
-    let currentLang = localStorage.getItem('lang') || 'en';
+    let browserLang = navigator.language.startsWith('ro') ? 'ro' : 'en';
+    let currentLang = localStorage.getItem('lang') || browserLang;
 
     function setLang(lang) {
       fetch(`lang/${lang}.json`)
@@ -435,6 +436,7 @@
           // Optionally update lang-toggle icon
           const langIcon = langToggle.querySelector('img');
           if (langIcon) langIcon.src = lang === 'en' ? 'res/icons/en.png' : 'res/icons/ro.png';
+          document.documentElement.setAttribute('lang', lang);
         });
     }
 
