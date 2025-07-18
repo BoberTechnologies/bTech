@@ -308,27 +308,30 @@ if (langButton) {
       });
 
       const langToggle = document.getElementById('lang-toggle');
-const flagImg = langToggle.querySelector('img');
-let currentLang = 'en';
 
 // Function to update all elements with data-lang attributes
 function updateLanguage(lang) {
   document.documentElement.lang = lang;
-  currentLang = lang;
   
   // Update text content of elements based on data-lang
-  document.querySelectorAll('[data-en], [data-ro]').forEach(el => {
-    el.textContent = el.getAttribute(`data-${lang}`);
+  document.querySelectorAll('[data-i18n-key]').forEach(el => {
+    const key = el.getAttribute('data-i18n-key');
+    if (key) {
+      el.textContent = i18nData[key];
+    }
   });
   
   // Update the flag based on language
-  flagImg.src = lang === 'en' ? 'res/icons/en.png' : 'res/icons/ro.png';
-  flagImg.alt = lang === 'en' ? 'English flag' : 'Romanian flag';
+  const flagImg = langToggle.querySelector('img');
+  if (flagImg) {
+    flagImg.src = lang === 'en' ? 'res/icons/en.png' : 'res/icons/ro.png';
+    flagImg.alt = lang === 'en' ? 'English flag' : 'Romanian flag';
+  }
 }
 
 // Language toggle button
 langToggle.addEventListener('click', () => {
-  const newLang = currentLang === 'en' ? 'ro' : 'en';
+  const newLang = document.documentElement.lang === 'en' ? 'ro' : 'en';
   updateLanguage(newLang);
 });
 
