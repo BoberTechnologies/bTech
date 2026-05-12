@@ -1,391 +1,373 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Calculate responsive values based on viewport
-    function getResponsiveValue(min, preferred, max) {
-        return Math.min(Math.max(min, preferred), max);
-    }
-    
-    // Helper function to calculate viewport-relative values
-    function vwToPx(vw) {
-        return (window.innerWidth * vw) / 100;
-    }
-    
-    function vhToPx(vh) {
-        return (window.innerHeight * vh) / 100;
-    }
-    
-    // Smooth scrolling for navigation buttons
-    const navButtons = document.querySelectorAll('.nav-btn, .dot-nav-btn, .logo-btn');
-    const navbar = document.querySelector('.navbar');
-    
-    navButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('data-section');
-            const targetSection = document.getElementById(targetId);
+/**
+ * BOBER TECHNOLOGIES - Main Application Script
+ * Organized with a modular pattern for better maintainability.
+ */
+
+const BTechApp = (function() {
+    // --- State & Configuration ---
+    const state = {
+        currentLang: localStorage.getItem('lang') || (navigator.language.startsWith('ro') ? 'ro' : 'en'),
+        isDarkMode: localStorage.getItem('darkMode') === null 
+            ? window.matchMedia('(prefers-color-scheme: dark)').matches 
+            : localStorage.getItem('darkMode') === 'true',
+        lastScrollY: window.scrollY,
+        ticking: false
+    };
+
+    const config = {
+        apiSubmitUrl: "https://api.web3forms.com/submit",
+        navbarHeightOffset: 10,
+        scrollThresholdFactor: 0.25,
+        parallaxSpeed: 5
+    };
+
+    // --- Selectors ---
+    const ui = {
+        navbar: document.querySelector('.navbar'),
+        navButtons: document.querySelectorAll('.nav-btn, .dot-nav-btn, .logo-btn'),
+        dotNavbar: document.querySelector('.dot-navbar'),
+        sections: document.querySelectorAll('.section'),
+        themeToggle: document.getElementById('theme-toggle'),
+        langToggle: document.getElementById('lang-toggle'),
+        contactForm: document.getElementById('contact-form'),
+        scrollArrow: document.getElementById('scroll-arrow'),
+        parallaxImages: document.querySelectorAll('.parallax-img'),
+        toggleContainer: document.querySelector('.toggle-container')
+    };
+
+    // --- Utilities ---
+    const utils = {
+        getResponsiveValue: (min, preferred, max) => Math.min(Math.max(min, preferred), max),
+        vhToPx: (vh) => (window.innerHeight * vh) / 100,
+        
+        throttle: (callback) => {
+            if (!state.ticking) {
+                window.requestAnimationFrame(() => {
+                    callback();
+                    state.ticking = false;
+                });
+                state.ticking = true;
+            }
+        }
+    };
+
+    // --- Core Modules ---
+
+    /**
+     * Internationalization Module
+     */
+    const i18n = {
+        async init() {
+            await this.loadLanguage(state.currentLang);
+        },
+
+        async loadLanguage(lang) {
+            try {
+                const response = await fetch(`lang/${lang}.json`);
+                const dict = await response.json();
+                
+                document.querySelectorAll('[data-i18n-key]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-key');
+                    const value = key.split('.').reduce((o, i) => (o ? o[i] : undefined), dict);
+                    if (value) el.textContent = value;
+                });
+
+                state.currentLang = lang;
+                localStorage.setItem('lang', lang);
+                document.documentElement.setAttribute('lang', lang);
+                
+                this.updateToggleIcon(lang);
+            } catch (error) {
+                console.error('Failed to load language:', error);
+            }
+        },
+
+        updateToggleIcon(lang) {
+            const langIcon = ui.langToggle?.querySelector('img');
+            if (langIcon) {
+                langIcon.src = `res/icons/${lang}.png`;
+                langIcon.alt = lang === 'en' ? 'English flag' : 'Romanian flag';
+            }
+        },
+
+        async getDictionary() {
+            const response = await fetch(`lang/${state.currentLang}.json`);
+            return await response.json();
+        }
+    };
+
+    /**
+     * Theme Module
+     */
+    const theme = {
+        init() {
+            this.applyTheme(state.isDarkMode);
             
-            // Get navbar height for accurate scrolling with fixed header
-            const navbarHeight = navbar.offsetHeight;
-            
-            // Calculate a responsive offset based on viewport size
-            const responsiveOffset = getResponsiveValue(10, vhToPx(2), 50);
-            
+            // System theme change listener
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                if (localStorage.getItem('darkMode') === null) {
+                    this.applyTheme(e.matches);
+                }
+            });
+        },
+
+        applyTheme(isDark) {
+            document.body.classList.remove('light-mode', 'dark-mode');
+            document.body.classList.add(isDark ? 'dark-mode' : 'light-mode');
+            state.isDarkMode = isDark;
+            localStorage.setItem('darkMode', isDark);
+        },
+
+        toggle() {
+            this.applyTheme(!state.isDarkMode);
+        }
+    };
+
+    /**
+     * Navigation & Scroll Module
+     */
+    const navigation = {
+        init() {
+            this.bindEvents();
+            this.updateActiveSection();
+            this.updateScrollArrow();
+        },
+
+        bindEvents() {
+            ui.navButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = button.getAttribute('data-section');
+                    this.scrollToSection(targetId);
+                });
+            });
+
+            // Hover effects for dots
+            document.querySelectorAll('.dot-nav-item').forEach(item => {
+                const btn = item.querySelector('.dot-nav-btn');
+                const name = item.querySelector('.section-name');
+                
+                item.addEventListener('mouseenter', () => {
+                    if (name) {
+                        name.style.opacity = '1';
+                        name.style.transform = 'translateX(0)';
+                        name.style.visibility = 'visible';
+                    }
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    if (name && !btn.classList.contains('active')) {
+                        name.style.opacity = '0';
+                        name.style.transform = 'translateX(10px)';
+                        name.style.visibility = 'hidden';
+                    }
+                });
+            });
+        },
+
+        scrollToSection(id) {
+            const target = document.getElementById(id);
+            if (!target) return;
+
+            const navbarHeight = ui.navbar ? ui.navbar.offsetHeight : 0;
+            const responsiveOffset = utils.getResponsiveValue(10, utils.vhToPx(2), 50);
+
             window.scrollTo({
-                top: targetSection.offsetTop - navbarHeight - responsiveOffset,
+                top: target.offsetTop - navbarHeight - responsiveOffset,
                 behavior: 'smooth'
             });
-        });
-    });
-    
-    // Add active class to current section's nav button
-    const sections = document.querySelectorAll('.section');
-    
-    function updateActiveSection() {
-        const navbarHeight = navbar.offsetHeight;
-        const viewportHeight = window.innerHeight;
-        let current = '';
-    
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            // Use a percentage of viewport height for threshold
-            const threshold = getResponsiveValue(0.1, 0.25, 0.5) * viewportHeight;
-    
-            if (window.scrollY >= (sectionTop - navbarHeight - threshold)) {
-                current = section.getAttribute('id');
-            }
-        });
-    
-        // Update regular nav buttons
-        document.querySelectorAll('.nav-btn').forEach(button => {
-            button.classList.remove('active');
-            if (button.getAttribute('data-section') === current) {
-                button.classList.add('active');
-                // Apply the accent color (for example, using a CSS variable --accent-color)
-                button.style.backgroundColor = 'var(--accent-color)'; // Replace with your accent color
-                button.style.color = '#fff'; // Assuming the text should be white when the button is active
-            } else {
-                // Reset the background and text color for inactive buttons
-                button.style.backgroundColor = ''; // Reset to default
-                button.style.color = ''; // Reset to default
-            }
-    
-            // Hide nav buttons when not on first section
-            if (current === 'section1') {
-                button.classList.remove('hidden');
-            } else {
-                button.classList.add('hidden');
-            }        
-            
-            const langButton = document.querySelector('.language-btn');
+        },
 
-if (langButton) {
-    if (current === 'section1') {
-        langButton.classList.remove('hidden');
-        langButton.setAttribute('aria-hidden', 'false');
-    } else {
-        langButton.classList.add('hidden');
-        langButton.setAttribute('aria-hidden', 'true');
-    }
-}
-        });
-    
-        // Update dot nav buttons and handle section name visibility
-        document.querySelectorAll('.dot-nav-btn').forEach(button => {
-            button.classList.remove('active');
-            if (button.getAttribute('data-section') === current) {
-                button.classList.add('active');
-                // Show section name immediately when section becomes active
-                const sectionName = button.parentElement.querySelector('.section-name');
-                if (sectionName) {
-                    sectionName.style.opacity = '1';
-                    sectionName.style.transform = 'translateX(0)';
-                    sectionName.style.visibility = 'visible';
-    
-                    // Hide section name after 1 second
-                    setTimeout(() => {
-                        sectionName.style.opacity = '0';
-                        sectionName.style.transform = 'translateX(10px)';
-                        sectionName.style.visibility = 'hidden';
-                    }, 1000);
+        updateActiveSection() {
+            const navbarHeight = ui.navbar ? ui.navbar.offsetHeight : 0;
+            const viewportHeight = window.innerHeight;
+            let current = '';
+
+            ui.sections.forEach(section => {
+                const threshold = utils.getResponsiveValue(0.1, config.scrollThresholdFactor, 0.5) * viewportHeight;
+                if (window.scrollY >= (section.offsetTop - navbarHeight - threshold)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            if (current) this.updateUIElements(current);
+        },
+
+        updateUIElements(current) {
+            // Regular nav buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                const isMatch = btn.getAttribute('data-section') === current;
+                btn.classList.toggle('active', isMatch);
+                btn.classList.toggle('hidden', current !== 'section1');
+            });
+
+            // Dot nav
+            document.querySelectorAll('.dot-nav-btn').forEach(btn => {
+                const isMatch = btn.getAttribute('data-section') === current;
+                btn.classList.toggle('active', isMatch);
+                
+                if (isMatch) {
+                    const name = btn.parentElement.querySelector('.section-name');
+                    if (name) {
+                        name.style.opacity = '1';
+                        name.style.transform = 'translateX(0)';
+                        name.style.visibility = 'visible';
+                        
+                        // Clear existing timeout if any (simplified here)
+                        setTimeout(() => {
+                            if (btn.parentElement && !btn.parentElement.matches(':hover')) {
+                                name.style.opacity = '0';
+                                name.style.transform = 'translateX(10px)';
+                                name.style.visibility = 'hidden';
+                            }
+                        }, 1500);
+                    }
+                }
+            });
+
+            if (ui.dotNavbar) {
+                ui.dotNavbar.classList.toggle('hidden', current === 'section1');
+            }
+        },
+
+        updateScrollArrow() {
+            if (!ui.scrollArrow) return;
+            const isBottom = (window.scrollY + window.innerHeight) >= (document.documentElement.scrollHeight - 100);
+            ui.scrollArrow.style.opacity = isBottom ? '0' : '1';
+            ui.scrollArrow.style.pointerEvents = isBottom ? 'none' : 'auto';
+        },
+
+        handleScrollVisibility() {
+            const currentScrollY = window.scrollY;
+            const delta = currentScrollY - state.lastScrollY;
+
+            if (Math.abs(delta) > 10) {
+                const isScrollingDown = delta > 0;
+                ui.themeToggle?.classList.toggle('hidden', isScrollingDown);
+                ui.langToggle?.classList.toggle('hidden', isScrollingDown);
+            }
+            state.lastScrollY = currentScrollY;
+        }
+    };
+
+    /**
+     * Visual Effects Module
+     */
+    const effects = {
+        init() {
+            this.updateParallax();
+        },
+
+        updateParallax() {
+            // Hero background parallax
+            const scrollPosition = window.scrollY;
+            const parallaxSpeed = utils.getResponsiveValue(0.02, 0.05, 0.1);
+            document.body.style.backgroundPositionY = `calc(50% + ${scrollPosition * parallaxSpeed}px)`;
+
+            // Section 4 images parallax
+            ui.parallaxImages.forEach(container => {
+                const img = container.querySelector('img');
+                if (!img) return;
+                
+                const rect = container.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Only calculate if visible
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    const scrollProgress = (rect.top + rect.height / 2 - windowHeight / 2) / windowHeight;
+                    const offset = scrollProgress * 20 * config.parallaxSpeed;
+                    img.style.setProperty('--scroll-offset', `${offset}px`);
+                }
+            });
+
+            // Section 2 dynamic reveal
+            const section2 = document.getElementById('section2');
+            if (section2) {
+                const rect = section2.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    const progress = (window.scrollY - (section2.offsetTop)) / section2.offsetHeight;
+                    section2.style.setProperty('--background-position', `${50 + (progress - 0.5) * 100}%`);
                 }
             }
-        });
-    
-        // Toggle visibility of dot navbar based on current section
-        const dotNavbar = document.querySelector('.dot-navbar');
-        if (dotNavbar) {
-            if (current === 'section1') {
-                dotNavbar.classList.add('hidden');
-            } else {
-                dotNavbar.classList.remove('hidden');
+        }
+    };
+
+    /**
+     * Form Module
+     */
+    const forms = {
+        init() {
+            if (ui.contactForm) {
+                ui.contactForm.addEventListener('submit', (e) => this.handleSubmit(e));
             }
-        }
-    }
-    
-    
-    // Initial call to set active state correctly on page load
-    updateActiveSection();
-    
-    // Add throttling to scroll event to improve performance
-    let scrollTimeout;
-    window.addEventListener('scroll', function() {
-        if (scrollTimeout) {
-            window.cancelAnimationFrame(scrollTimeout);
-        }
-        
-        scrollTimeout = window.requestAnimationFrame(function() {
-            updateActiveSection();
-        });
-    });
-    
-    // Update on resize to handle responsive changes
-    let resizeTimeout;
-    window.addEventListener('resize', function() {
-        if (resizeTimeout) {
-            clearTimeout(resizeTimeout);
-        }
-        resizeTimeout = setTimeout(updateActiveSection, 100);
-    });
-    
-    // Form submission
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        },
+
+        async handleSubmit(e) {
             e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const formValues = Object.fromEntries(formData.entries());
-            
-            // Simple validation
-            if (!formValues.name || !formValues.email || !formValues.message) {
-                alert('Please fill in all fields');
+            const form = e.target;
+            const formData = new FormData(form);
+            const dict = await i18n.getDictionary();
+            const status = dict.form_status || {};
+
+            // Validation
+            const values = Object.fromEntries(formData.entries());
+            if (!values.name || !values.email || !values.text) {
+                alert(status.validation_error || "Please fill in all required fields.");
                 return;
             }
-            
-            // Here you would normally send the data to a server
-            console.log('Form data:', formValues);
-            
-            // Show success message
-            alert('Thank you for your message! We will get back to you soon.');
-            
-            // Reset the form
-            this.reset();
-        });
-    }
-    
-    // Create a logo placeholder if no logo image is found
-    const logoImg = document.querySelector('.logo img');
-    if (logoImg) {
-        logoImg.addEventListener('error', function() {
-            const logoDiv = this.parentElement;
-            this.remove();
-            
-            // Create text logo as fallback
-            const textLogo = document.createElement('h1');
-            textLogo.textContent = 'LOGO';
-            textLogo.style.color = 'white';
-            // Use responsive font size
-            textLogo.style.fontSize = 'clamp(1.2rem, 3vw, 1.5rem)';
-            logoDiv.appendChild(textLogo);
-        });
-    }
-    
-    // Add a lightweight parallax effect that works well with responsive design
-    let ticking = false;
-    window.addEventListener('scroll', function() {
-        if (!ticking) {
-            window.requestAnimationFrame(function() {
-                const scrollPosition = window.scrollY;
-                const viewportHeight = window.innerHeight;
-                // Calculate responsive parallax speed
-                const parallaxSpeed = getResponsiveValue(0.02, 0.05, 0.1);
-                
-                // Use both percentage and pixel values for better responsiveness
-                document.body.style.backgroundPositionY = `calc(50% + ${scrollPosition * parallaxSpeed}px)`;
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
 
-    // Add hover event listeners for dot navigation
-    document.querySelectorAll('.dot-nav-btn').forEach(button => {
-        const sectionName = button.parentElement.querySelector('.section-name');
-        
-        button.addEventListener('mouseenter', function() {
-            if (sectionName) {
-                sectionName.style.opacity = '1';
-                sectionName.style.transform = 'translateX(0)';
-                sectionName.style.visibility = 'visible';
-            }
-        });
-
-        button.addEventListener('mouseleave', function() {
-            if (sectionName && !button.classList.contains('active')) {
-                sectionName.style.opacity = '0';
-                sectionName.style.transform = 'translateX(10px)';
-                sectionName.style.visibility = 'hidden';
-            }
-        });
-    });
-
-    // Add image reveal effect to section 2 background
-    const section2 = document.getElementById('section2');
-    if (section2) {
-        let ticking = false;
-        window.addEventListener('scroll', function() {
-            if (!ticking) {
-                window.requestAnimationFrame(function() {
-                    const scrolled = window.scrollY;
-                    const section2Top = section2.getBoundingClientRect().top + window.scrollY;
-                    const section2Height = section2.offsetHeight;
-                    const viewportHeight = window.innerHeight;
-                    
-                    // Calculate how far through the section we've scrolled (0 to 1)
-                    const progress = (scrolled - section2Top) / section2Height;
-                    
-                    // Calculate how much of the section is visible
-                    const sectionBottom = section2Top + section2Height;
-                    const visibleHeight = Math.min(sectionBottom, scrolled + viewportHeight) - Math.max(section2Top, scrolled);
-                    const visibilityProgress = visibleHeight / section2Height;
-                    
-                    // Only apply effect when section is in view
-                    if (visibilityProgress > 0) {
-                        // Calculate the background position based on both scroll progress and visibility
-                        const backgroundPosition = 50 + (progress - 0.5) * 100;
-                        section2.style.setProperty('--background-position', `${backgroundPosition}%`);
-                    }
-                    
-                    ticking = false;
+            try {
+                const response = await fetch(config.apiSubmitUrl, {
+                    method: "POST",
+                    body: formData
                 });
-                ticking = true;
-            }
-        });
-    }
 
-    // Handle scroll arrow visibility
-    const scrollArrow = document.getElementById('scroll-arrow');
-    if (scrollArrow) {
-        function updateScrollArrowVisibility() {
-            const scrollPosition = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
+                const result = await response.json();
+
+                if (result.success) {
+                    alert(status.success || "Message sent successfully!");
+                    form.reset();
+                } else {
+                    alert((status.error || "Error: ") + (result.message || status.error_default || "Submission failed."));
+                }
+            } catch (error) {
+                alert(status.network_error || "Network error. Please try again.");
+            }
+        }
+    };
+
+    // --- Public API ---
+    return {
+        init() {
+            i18n.init();
+            theme.init();
+            navigation.init();
+            effects.init();
+            forms.init();
+
+            // Global listeners
+            window.addEventListener('scroll', () => {
+                utils.throttle(() => {
+                    navigation.updateActiveSection();
+                    navigation.updateScrollArrow();
+                    navigation.handleScrollVisibility();
+                    effects.updateParallax();
+                });
+            });
+
+            window.addEventListener('resize', () => {
+                utils.throttle(() => {
+                    navigation.updateActiveSection();
+                });
+            });
+
+            ui.themeToggle?.addEventListener('click', () => theme.toggle());
+            ui.langToggle?.addEventListener('click', () => i18n.loadLanguage(state.currentLang === 'en' ? 'ro' : 'en'));
             
-            // Show arrow if not at bottom (with a small threshold)
-            if (scrollPosition + windowHeight < documentHeight - 100) {
-                scrollArrow.style.opacity = '1';
-                scrollArrow.style.pointerEvents = 'auto';
-            } else {
-                scrollArrow.style.opacity = '0';
-                scrollArrow.style.pointerEvents = 'none';
-            }
+            console.log('BTech App initialized');
         }
+    };
+})();
 
-        // Initial check
-        updateScrollArrowVisibility();
-
-        // Update on scroll
-        window.addEventListener('scroll', updateScrollArrowVisibility);
-    }
-
-    window.addEventListener('scroll', () => {
-        const speed = 5; // smaller = slower movement (experiment!)
-    
-        document.querySelectorAll('.parallax-img').forEach(container => {
-          const img = container.querySelector('img');
-          const rect = container.getBoundingClientRect();
-          const windowHeight = window.innerHeight;
-    
-          // How far the element is from the center of the screen
-          const scrollProgress = (rect.top + rect.height / 2 - windowHeight / 2) / windowHeight;
-    
-          // Parallax effect: negative = move up when scrolling down
-          const offset = scrollProgress * 20 * speed;
-    
-          img.style.setProperty('--scroll-offset', `${offset}px`);
-        });
-      });
-
-      const langToggle = document.getElementById('lang-toggle');
-
-// Function to update all elements with data-lang attributes
-function updateLanguage(lang) {
-  document.documentElement.lang = lang;
-  
-  // Update text content of elements based on data-lang
-  document.querySelectorAll('[data-i18n-key]').forEach(el => {
-    const key = el.getAttribute('data-i18n-key');
-    if (key) {
-      el.textContent = i18nData[key];
-    }
-  });
-  
-  // Update the flag based on language
-  const flagImg = langToggle.querySelector('img');
-  if (flagImg) {
-    flagImg.src = lang === 'en' ? 'res/icons/en.png' : 'res/icons/ro.png';
-    flagImg.alt = lang === 'en' ? 'English flag' : 'Romanian flag';
-  }
-}
-
-// Language toggle button
-langToggle.addEventListener('click', () => {
-  const newLang = document.documentElement.lang === 'en' ? 'ro' : 'en';
-  updateLanguage(newLang);
-});
-
-      let lastScrollY = window.scrollY;
-      const toggleButton = document.getElementById('lang-toggle');
-      
-      window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-      
-        if (currentScrollY - lastScrollY > 10) {
-            // Scrolling down → hide
-            themeToggle.classList.add('hidden');
-            toggleButton.classList.add('hidden');
-        } else if (lastScrollY - currentScrollY > 10) {
-            // Scrolling up → show
-            themeToggle.classList.remove('hidden');
-            toggleButton.classList.remove('hidden');
-        }
-      
-        lastScrollY = currentScrollY;
-    });
-
-
-      const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-    
-    // Function to set theme
-    function setTheme(isDark) {
-        document.body.classList.remove('light-mode', 'dark-mode');
-        document.body.classList.add(isDark ? 'dark-mode' : 'light-mode');
-        localStorage.setItem('darkMode', isDark);
-    }
-
-    // Check for system preference and stored preference
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const storedTheme = localStorage.getItem('darkMode');
-    
-    // Set initial theme
-    if (storedTheme !== null) {
-        setTheme(storedTheme === 'true');
-    } else {
-        setTheme(prefersDark);
-    }
-
-    // Toggle theme on button click
-    themeToggle.addEventListener('click', () => {
-        setTheme(!document.body.classList.contains('dark-mode'));
-    });
-
-    // Handle system theme changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        if (localStorage.getItem('darkMode') === null) {
-            setTheme(e.matches);
-        }
-    });
-
-});
+// Initialize on DOM load
+document.addEventListener('DOMContentLoaded', () => BTechApp.init());
