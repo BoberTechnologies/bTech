@@ -4,12 +4,14 @@
       "about": "Despre",
       "services": "Servicii",
       "development": "Dezvoltare",
-      "contact": "Contact"
+      "contact": "Contact",
+      "quote": "Cere Ofertă"
     },
     "dot_nav": {
       "home": "Acasă",
       "about": "Despre",
       "services": "Servicii",
+      "packages": "Pachete",
       "development": "Dezvoltare",
       "contact": "Contact"
     }
@@ -72,10 +74,63 @@
     "delivery_support_intro": "După livrarea produsului, oferim suport complet pentru a asigura o implementare lină și un succes continuu.",
     "delivery_support_desc": "Suntem aici să te sprijinim la fiecare pas."
   },
+  "section_packages": {
+    "title": "Pachete Servicii",
+    "startup": {
+      "title": "Startups & Antreprenori",
+      "focus": "Dezvoltare MVP & Lansare Rapidă",
+      "feature1_word1": "Design",
+      "feature1_rest": "UI/UX",
+      "feature2_word1": "Dezvoltare",
+      "feature2_rest": "Funcționalități Core",
+      "feature3_word1": "Arhitectură",
+      "feature3_rest": "Scalabilă",
+      "cta": "Începe Proiectul"
+    },
+    "growth": {
+      "title": "Growth (IMM-uri)",
+      "focus": "Expansiune & Automatizare",
+      "feature1_word1": "Integrări",
+      "feature1_rest": "CRM/ERP",
+      "feature2_word1": "Automatizare",
+      "feature2_rest": "Workflow-uri",
+      "feature3_word1": "Extensii",
+      "feature3_rest": "Mobile App",
+      "cta": "Scalează Afacerea"
+    },
+    "enterprise": {
+      "title": "Enterprise",
+      "focus": "Eficiență & Optimizare",
+      "feature1_word1": "Modernizare",
+      "feature1_rest": "Sisteme Legacy",
+      "feature2_word1": "Migrare",
+      "feature2_rest": "Cloud",
+      "feature3_word1": "Analiza",
+      "feature3_rest": "Datelor/BI",
+      "cta": "Optimizează Acum"
+    }
+  },
   "section5": {
     "get": "Hai",
     "in_touch": "să luăm legătura",
-    "send": "Trimite"
+    "send": "Trimite",
+    "form": {
+      "name": "Nume Complet",
+      "email": "Email Companie",
+      "project_type": {
+        "label": "Tip Proiect",
+        "startup": "Startup MVP",
+        "growth": "Growth & Automatizare",
+        "enterprise": "Optimizare Enterprise"
+      },
+      "timeline": {
+        "label": "Timeline Estimat",
+        "immediate": "Imediat",
+        "short": "1-3 Luni",
+        "planning": "Faza de Planificare"
+      },
+      "challenge": "Descrie pe scurt provocarea ta"
+    }
   },
   "form_status": {
     "success": "Mesaj trimis cu succes!",

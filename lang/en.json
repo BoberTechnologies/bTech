@@ -4,12 +4,14 @@
       "about": "About",
       "services": "Services",
       "development": "Development",
-      "contact": "Contact"
+      "contact": "Contact",
+      "quote": "Get a Quote"
     },
     "dot_nav": {
       "home": "Home",
       "about": "About",
       "services": "Services",
+      "packages": "Packages",
       "development": "Development",
       "contact": "Contact"
     }
@@ -72,10 +74,63 @@
     "delivery_support_intro": "After delivering your product, we provide comprehensive support to ensure smooth implementation and continued success.",
     "delivery_support_desc": "We're here to help you every step of the way."
   },
+  "section_packages": {
+    "title": "Service Packages",
+    "startup": {
+      "title": "Startups & Entrepreneurs",
+      "focus": "MVP Development & Rapid Launch",
+      "feature1_word1": "UI/UX",
+      "feature1_rest": "Design",
+      "feature2_word1": "Core",
+      "feature2_rest": "Feature Dev",
+      "feature3_word1": "Scalable",
+      "feature3_rest": "Architecture",
+      "cta": "Start My Project"
+    },
+    "growth": {
+      "title": "Growth (SMBs)",
+      "focus": "Expansion & Automation",
+      "feature1_word1": "CRM/ERP",
+      "feature1_rest": "Integrations",
+      "feature2_word1": "Workflow",
+      "feature2_rest": "Automation",
+      "feature3_word1": "Mobile",
+      "feature3_rest": "Extensions",
+      "cta": "Scale My Business"
+    },
+    "enterprise": {
+      "title": "Enterprise",
+      "focus": "Efficiency & Optimization",
+      "feature1_word1": "Legacy",
+      "feature1_rest": "Modernization",
+      "feature2_word1": "Cloud",
+      "feature2_rest": "Migration",
+      "feature3_word1": "Data",
+      "feature3_rest": "Analytics/BI",
+      "cta": "Optimize Now"
+    }
+  },
   "section5": {
     "get": "Get",
     "in_touch": "in touch with us",
-    "send": "Send"
+    "send": "Send",
+    "form": {
+      "name": "Full Name",
+      "email": "Company Email",
+      "project_type": {
+        "label": "Project Type",
+        "startup": "Startup MVP",
+        "growth": "Growth & Automation",
+        "enterprise": "Enterprise Optimization"
+      },
+      "timeline": {
+        "label": "Estimated Timeline",
+        "immediate": "Immediate",
+        "short": "1-3 Months",
+        "planning": "Planning Phase"
+      },
+      "challenge": "Briefly describe your challenge"
+    }
   },
   "form_status": {
     "success": "Message sent successfully!",

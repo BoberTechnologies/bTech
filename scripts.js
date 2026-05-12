@@ -72,6 +72,12 @@ const BTechApp = (function() {
                     if (value) el.textContent = value;
                 });
 
+                document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-placeholder');
+                    const value = key.split('.').reduce((o, i) => (o ? o[i] : undefined), dict);
+                    if (value) el.placeholder = value;
+                });
+
                 state.currentLang = lang;
                 localStorage.setItem('lang', lang);
                 document.documentElement.setAttribute('lang', lang);
@@ -139,6 +145,39 @@ const BTechApp = (function() {
                     e.preventDefault();
                     const targetId = button.getAttribute('data-section');
                     this.scrollToSection(targetId);
+                    
+                    // GA4 Tracking for "Get a Quote"
+                    if (button.classList.contains('quote-btn')) {
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'click_get_quote', {
+                                'event_category': 'Engagement',
+                                'event_label': 'Header CTA'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Package CTAs
+            document.querySelectorAll('.package-cta').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const targetId = button.getAttribute('data-section');
+                    const pkg = button.getAttribute('data-package');
+                    
+                    // Pre-select package in form
+                    const projectTypeSelect = document.getElementById('project_type');
+                    if (projectTypeSelect) {
+                        projectTypeSelect.value = pkg;
+                    }
+
+                    this.scrollToSection(targetId);
+
+                    // GA4 Tracking for Package CTA
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'click_package_cta', {
+                            'package_type': pkg
+                        });
+                    }
                 });
             });
 
@@ -183,7 +222,8 @@ const BTechApp = (function() {
             const viewportHeight = window.innerHeight;
             let current = '';
 
-            ui.sections.forEach(section => {
+            const allSections = document.querySelectorAll('.section');
+            allSections.forEach(section => {
                 const threshold = utils.getResponsiveValue(0.1, config.scrollThresholdFactor, 0.5) * viewportHeight;
                 if (window.scrollY >= (section.offsetTop - navbarHeight - threshold)) {
                     current = section.getAttribute('id');
@@ -198,7 +238,9 @@ const BTechApp = (function() {
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 const isMatch = btn.getAttribute('data-section') === current;
                 btn.classList.toggle('active', isMatch);
-                btn.classList.toggle('hidden', current !== 'section1');
+                if (!btn.classList.contains('quote-btn')) {
+                    btn.classList.toggle('hidden', current !== 'section1');
+                }
             });
 
             // Dot nav
@@ -326,6 +368,14 @@ const BTechApp = (function() {
 
                 if (result.success) {
                     alert(status.success || "Message sent successfully!");
+                    
+                    // GA4 Tracking for successful form submission
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'form_submission_success', {
+                            'project_type': formData.get('project_type')
+                        });
+                    }
+
                     form.reset();
                 } else {
                     alert((status.error || "Error: ") + (result.message || status.error_default || "Submission failed."));

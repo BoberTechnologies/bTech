@@ -1,0 +1,59 @@
+Technical Implementation Brief: Lead Gen & Service Tiering
+1. Header & Global Navigation Update
+Action: Implement a high-visibility Call-to-Action (CTA) button in the main navigation bar.
+
+Label: "Get a Quote" or "Free Consultation".
+
+Styling: Use a consistent style with the buttons on the page
+
+Behavior: The button should remain visible (Sticky Header) as the user scrolls down the page.
+
+2. Implementation of "Service Packages" Section
+Structure: Create a three-column layout (Cards) on the homepage and the "Packages" section between Services and Development to categorize client types.
+
+Category 1: Startups & Entrepreneurs
+
+Focus: MVP Development & Rapid Launch.
+
+Key Features: UI/UX Design, Core Feature Dev, Scalable Architecture.
+
+CTA: "Start My Project".
+
+Category 2: Small & Mid-Sized Businesses (Growth)
+
+Focus: Expansion & Automation.
+
+Key Features: CRM/ERP Integrations, Custom Workflow Automation, Mobile App Extensions.
+
+CTA: "Scale My Business".
+
+Category 3: Enterprise & Large Corporations
+
+Focus: Efficiency & Cost Optimization.
+
+Key Features: Legacy System Modernization, Cloud Migration, Data Analytics/BI.
+
+CTA: "Optimize Now".
+
+3. Dynamic Lead Capture Form
+Action: Replace the basic contact form with a multi-step or "Smart" inquiry form linked to the buttons mentioned above.
+
+Required Fields: * Full Name & Company Email.
+
+Dropdown: "Project Type" (Startup MVP / Growth & Automation / Enterprise Optimization).
+
+Dropdown: "Estimated Timeline" (Immediate / 1-3 Months / Planning Phase).
+
+Text Area: "Briefly describe your challenge".
+
+4. Instant Contact Integration (WhatsApp/Chat)
+Action: Integrate a floating WhatsApp Business widget in the bottom-right corner.
+
+Trigger Message: Pre-fill the user's message with: "Hi B-Tech, I'm interested in a software solution for my business. Can we talk?"
+
+5. SEO & Tracking Metadata
+Action: Update Meta Titles and Descriptions for each service page to include keywords like "Custom Software Development Romania", "Business Automation Solutions", and "Software Cost Optimization".
+
+Event Tracking: Set up Google Analytics 4 (GA4) events to track clicks on the "Get a Quote" button and successful form submissions.
+
+Note to AI Agent: Ensure all UI elements are mobile-responsive and maintain the professional, minimalist aesthetic of the b-tech.ro brand. Use clean typography and ample white space between the new service cards.
