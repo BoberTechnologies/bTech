@@ -24,9 +24,12 @@
     <meta property="og:locale" content="ro_RO" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="BOBER TECHNOLOGIES - Custom Software & IT Solutions" />
-    <meta property="og:description" content="We build powerful software tailored to your business. Let's bring your tech ideas to life." />
+    <meta property="og:description" content="Custom Software Development, Web Design, and SEO in Romania. We turn your ideas into reality." />
     <meta property="og:image" content="https://b-tech.ro/res/LOGO_Dark.png" />
-    <meta property="og:url" content="https://b-tech.ro/" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://b-tech.ro/index.html" />
+    <meta property="og:site_name" content="BOBER TECHNOLOGIES" />
 
     <!-- Twitter Card -->
     <meta name="twitter:lang" content="ro, en">
@@ -38,18 +41,23 @@
     <!-- Schema.org -->
     <script type="application/ld+json">
         {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "BOBER TECHNOLOGIES",
-        "url": "https://b-tech.ro",
-        "logo": "https://b-tech.ro/res/LOGO_Dark.png",
-        "contactPoint": {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "BOBER TECHNOLOGIES",
+          "alternateName": "B-Tech",
+          "url": "https://b-tech.ro",
+          "logo": "https://b-tech.ro/res/LOGO_Dark.png",
+          "sameAs": [
+            "https://www.facebook.com/profile.php?id=61576194466730"
+          ],
+          "contactPoint": {
             "@type": "ContactPoint",
             "email": "contact@b-tech.ro",
+            "telephone": "+40733216828",
             "contactType": "Customer Service",
             "areaServed": "RO",
             "availableLanguage": ["English", "Romanian"]
-        }
+          }
         }
     </script>
 
@@ -62,35 +70,41 @@
               "@type": "ListItem",
               "position": 1,
               "name": "Home",
-              "item": "https://b-tech.ro/#section1"
+              "item": "https://b-tech.ro/index.html"
             },
             {
               "@type": "ListItem",
               "position": 2,
-              "name": "About",
-              "item": "https://b-tech.ro/#section2"
+              "name": "Web Design",
+              "item": "https://b-tech.ro/web-design.html"
             },
             {
               "@type": "ListItem",
               "position": 3,
-              "name": "Services",
-              "item": "https://b-tech.ro/#section3"
+              "name": "SEO",
+              "item": "https://b-tech.ro/seo.html"
             },
             {
-                "@type": "ListItem",
-                "position": 4,
-                "name": "Development",
-                "item": "https://b-tech.ro/#section4"
-              },
-              {
-                "@type": "ListItem",
-                "position": 5,
-                "name": "Contact",
-                "item": "https://b-tech.ro/#section5"
-              }
+              "@type": "ListItem",
+              "position": 4,
+              "name": "Automation",
+              "item": "https://b-tech.ro/automation.html"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "Portfolio",
+              "item": "https://b-tech.ro/portfolio.html"
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "name": "Contact",
+              "item": "https://b-tech.ro/contact.html"
+            }
           ]
         }
-        </script>
+    </script>
 
     <title>BOBER TECHNOLOGIES | Custom Software Development & IT Consulting</title>
   
@@ -112,20 +126,21 @@
     <header>
         <nav class="navbar">
             <div class="logo">
-                <button class="logo-btn" data-section="section1">
+                <a href="index.html" class="logo-btn">
                     <div class="logo-wrapper">
                         <div class="logo-background"></div>
                     </div>
-                </button>
+                </a>
             </div>
             <div class="nav-links">
-                <button class="nav-btn" role="navigation" data-section="section2" data-i18n-key="header.nav.about"></button>
-                <button class="nav-btn" role="navigation" data-section="section3" data-i18n-key="header.nav.services"></button>
-                <button class="nav-btn" role="navigation" data-section="section_packages" data-i18n-key="section_packages.title"></button>
-                <button class="nav-btn" role="navigation" data-section="section4" data-i18n-key="header.nav.development"></button>
-                <button class="nav-btn" role="navigation" data-section="section5" data-i18n-key="header.nav.contact"></button>
+                <a href="index.html" class="nav-btn" data-i18n-key="header.nav.home">Home</a>
+                <a href="web-design.html" class="nav-btn" data-i18n-key="header.nav.web_design">Web Design</a>
+                <a href="seo.html" class="nav-btn" data-i18n-key="header.nav.seo">SEO</a>
+                <a href="automation.html" class="nav-btn" data-i18n-key="header.nav.automation">Automation</a>
+                <a href="portfolio.html" class="nav-btn" data-i18n-key="header.nav.case_studies">Portfolio</a>
+                <a href="contact.html" class="nav-btn" data-i18n-key="header.nav.contact">Contact</a>
             </div>
-            <button class="nav-btn quote-btn" role="navigation" data-section="section5" data-i18n-key="header.nav.quote"></button>
+            <a href="contact.html#section5" class="nav-btn quote-btn" data-i18n-key="header.nav.quote">Get a Quote</a>
         </nav>
         
         <!-- Vertical dot navbar -->
@@ -315,7 +330,7 @@
                                     <li><span class="accent-word" data-i18n-key="section_packages.startup.feature2_word1"></span> <span data-i18n-key="section_packages.startup.feature2_rest"></span></li>
                                     <li><span class="accent-word" data-i18n-key="section_packages.startup.feature3_word1"></span> <span data-i18n-key="section_packages.startup.feature3_rest"></span></li>
                                 </ul>
-                                <button class="submit-btn package-cta" data-section="section5" data-package="startup" data-i18n-key="section_packages.startup.cta"></button>
+                                <a href="/contact.html#section5" class="submit-btn package-cta" data-section="section5" data-package="startup" data-i18n-key="section_packages.startup.cta" style="text-decoration: none;"></a>
                             </div>
                         </div>
 
@@ -329,7 +344,7 @@
                                     <li><span class="accent-word" data-i18n-key="section_packages.growth.feature2_word1"></span> <span data-i18n-key="section_packages.growth.feature2_rest"></span></li>
                                     <li><span class="accent-word" data-i18n-key="section_packages.growth.feature3_word1"></span> <span data-i18n-key="section_packages.growth.feature3_rest"></span></li>
                                 </ul>
-                                <button class="submit-btn package-cta" data-section="section5" data-package="growth" data-i18n-key="section_packages.growth.cta"></button>
+                                <a href="/contact.html#section5" class="submit-btn package-cta" data-section="section5" data-package="growth" data-i18n-key="section_packages.growth.cta" style="text-decoration: none;"></a>
                             </div>
                         </div>
 
@@ -343,7 +358,7 @@
                                     <li><span class="accent-word" data-i18n-key="section_packages.enterprise.feature2_word1"></span> <span data-i18n-key="section_packages.enterprise.feature2_rest"></span></li>
                                     <li><span class="accent-word" data-i18n-key="section_packages.enterprise.feature3_word1"></span> <span data-i18n-key="section_packages.enterprise.feature3_rest"></span></li>
                                 </ul>
-                                <button class="submit-btn package-cta" data-section="section5" data-package="enterprise" data-i18n-key="section_packages.enterprise.cta"></button>
+                                <a href="/contact.html#section5" class="submit-btn package-cta" data-section="section5" data-package="enterprise" data-i18n-key="section_packages.enterprise.cta" style="text-decoration: none;"></a>
                             </div>
                         </div>
                     </div>
@@ -437,6 +452,7 @@
                         <option value="startup" data-i18n-key="section5.form.project_type.startup"></option>
                         <option value="growth" data-i18n-key="section5.form.project_type.growth"></option>
                         <option value="enterprise" data-i18n-key="section5.form.project_type.enterprise"></option>
+                        <option value="not_sure" data-i18n-key="section5.form.project_type.not_sure"></option>
                     </select>
 
                     <select name="timeline" class="feedback-input" required>
@@ -472,12 +488,12 @@
         <div class="footer-content">
             <div style="display:flex; align-items: center;">
                 <div class="footer-logo">
-                    <img draggable="false" src="res/icons/beaver_png.png" alt="BOBER TECHNOLOGIES logo - beaver icon">
+                    <img draggable="false" src="/res/icons/beaver_png.png" alt="BOBER TECHNOLOGIES logo - beaver icon">
                 </div>
-                <p>BOBER TECHNOLOGIES S.R.L.&#8209;D.</p>
+                <p data-i18n-key="footer.company">BOBER TECHNOLOGIES S.R.L.&#8209;D.</p>
             </div>
             <div class="footer-icons">
-                <p style="white-space: nowrap;">Follow us on:</p>
+                <p style="white-space: nowrap;" data-i18n-key="footer.follow_us">Follow us on:</p>
                <!-- <button class="footer-btn">
                     <img loading="lazy" src="res/icons/linkedin.png" alt="LinkedIn">
                 </button> -->

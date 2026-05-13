@@ -64,7 +64,7 @@ const BTechApp = (function() {
 
         async loadLanguage(lang) {
             try {
-                const response = await fetch(`lang/${lang}.json`);
+                const response = await fetch(`/lang/${lang}.json`);
                 const dict = await response.json();
                 
                 document.querySelectorAll('[data-i18n-key]').forEach(el => {
@@ -76,6 +76,24 @@ const BTechApp = (function() {
                             if (words.length > 0) {
                                 const firstWord = words.shift();
                                 el.innerHTML = `<span class="accent">${firstWord}</span> ${words.join(' ')}`;
+                            } else {
+                                el.textContent = value;
+                            }
+                        } else if (el.hasAttribute('data-i18n-accent-two')) {
+                            const words = value.split(' ');
+                            if (words.length >= 2) {
+                                const firstTwo = words.splice(0, 2).join(' ');
+                                el.innerHTML = `<span class="accent">${firstTwo}</span> ${words.join(' ')}`;
+                            } else {
+                                el.innerHTML = `<span class="accent">${value}</span>`;
+                            }
+                        } else if (el.hasAttribute('data-i18n-accent-all')) {
+                            el.innerHTML = `<span class="accent">${value}</span>`;
+                        } else if (el.hasAttribute('data-i18n-accent-colon')) {
+                            const parts = value.split(':');
+                            if (parts.length > 1) {
+                                const label = parts.shift();
+                                el.innerHTML = `<span class="accent">${label}:</span>${parts.join(':')}`;
                             } else {
                                 el.textContent = value;
                             }
@@ -105,7 +123,7 @@ const BTechApp = (function() {
         updateToggleIcon(lang) {
             const langIcon = ui.langToggle?.querySelector('img');
             if (langIcon) {
-                langIcon.src = `res/icons/${lang}.png`;
+                langIcon.src = `/res/icons/${lang}.png`;
                 langIcon.alt = lang === 'en' ? 'English flag' : 'Romanian flag';
             }
         },
@@ -124,7 +142,7 @@ const BTechApp = (function() {
         },
 
         async getDictionary() {
-            const response = await fetch(`lang/${state.currentLang}.json`);
+            const response = await fetch(`/lang/${state.currentLang}.json`);
             return await response.json();
         }
     };
@@ -168,9 +186,41 @@ const BTechApp = (function() {
 
         bindEvents() {
             ui.navButtons.forEach(button => {
+                // Highlight current page
+                if (button.tagName === 'A' && !button.classList.contains('logo-btn') && !button.classList.contains('quote-btn')) {
+                    const buttonHref = button.getAttribute('href');
+                    if (buttonHref) {
+                        const currentPath = window.location.pathname;
+                        // Normalize paths for comparison
+                        const normalizedBtnPath = buttonHref.startsWith('/') ? buttonHref : '/' + buttonHref;
+                        const normalizedCurrentPath = currentPath === '/' ? '/index.html' : currentPath;
+
+                        // Check for exact match or if current page is a sub-resource of the nav link
+                        // (e.g. /portfolio/alydeea.html matches /portfolio.html)
+                        const isExactMatch = normalizedCurrentPath.endsWith(normalizedBtnPath);
+                        const isParentMatch = normalizedBtnPath !== '/index.html' && normalizedCurrentPath.includes(normalizedBtnPath.replace('.html', ''));
+
+                        if (isExactMatch || isParentMatch) {
+                            button.classList.add('current-page');
+                        }
+                    }
+                }
+
                 button.addEventListener('click', (e) => {
-                    e.preventDefault();
                     const targetId = button.getAttribute('data-section');
+                    if (!targetId) return; // For <a> links without data-section
+
+                    const target = document.getElementById(targetId);
+                    if (!target) {
+                        // If target not on this page, let the default behavior happen (for <a>)
+                        // or redirect to index.html#targetId (for <button>)
+                        if (button.tagName === 'BUTTON') {
+                            window.location.href = `index.html#${targetId}`;
+                        }
+                        return;
+                    }
+
+                    e.preventDefault();
                     this.scrollToSection(targetId);
                     
                     // GA4 Tracking for "Get a Quote"
@@ -191,6 +241,12 @@ const BTechApp = (function() {
                     const targetId = button.getAttribute('data-section');
                     const pkg = button.getAttribute('data-package');
                     
+                    const target = document.getElementById(targetId);
+                    if (!target) {
+                        window.location.href = `index.html?package=${pkg}#${targetId}`;
+                        return;
+                    }
+
                     // Pre-select package in form
                     const projectTypeSelect = document.getElementById('project_type');
                     if (projectTypeSelect) {
@@ -265,8 +321,15 @@ const BTechApp = (function() {
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 const isMatch = btn.getAttribute('data-section') === current;
                 btn.classList.toggle('active', isMatch);
+                
+                // --- SEAMLESS PAGE TRANSITION LOGIC ---
+                // If the user clicks a nav button that points to a section on ANOTHER page,
+                // we should let the default link behavior happen (if it's an <a> tag).
+                // But here we're updating active state based on scroll.
+                
                 if (!btn.classList.contains('quote-btn')) {
-                    btn.classList.toggle('hidden', current !== 'section1');
+                    // Navbar buttons must always be visible
+                    btn.classList.remove('hidden');
                 }
             });
 
@@ -295,7 +358,8 @@ const BTechApp = (function() {
             });
 
             if (ui.dotNavbar) {
-                ui.dotNavbar.classList.toggle('hidden', current === 'section1');
+                const isHomePage = window.location.pathname === '/' || window.location.pathname.endsWith('index.html');
+                ui.dotNavbar.classList.toggle('hidden', !isHomePage || current === 'section1');
             }
         },
 
@@ -368,6 +432,18 @@ const BTechApp = (function() {
         init() {
             if (ui.contactForm) {
                 ui.contactForm.addEventListener('submit', (e) => this.handleSubmit(e));
+                this.checkPreselectedPackage();
+            }
+        },
+
+        checkPreselectedPackage() {
+            const params = new URLSearchParams(window.location.search);
+            const pkg = params.get('package');
+            if (pkg) {
+                const projectTypeSelect = document.getElementById('project_type');
+                if (projectTypeSelect) {
+                    projectTypeSelect.value = pkg;
+                }
             }
         },
 

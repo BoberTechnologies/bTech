@@ -127,7 +127,7 @@ span.accent {
 /* --- 3. Header & Navigation --- */
 .navbar {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     padding: clamp(0.5rem, 2vw, 1.5rem) clamp(1rem, 3vw, 4rem);
     background-color: transparent !important;
@@ -144,7 +144,6 @@ span.accent {
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    margin-left: clamp(1rem, 3vw, 2rem);
 }
 
 .logo-btn {
@@ -192,11 +191,12 @@ body.dark-mode .logo-background { background-image: url('res/LOGO.png'); }
     border-radius: clamp(0.125rem, 0.5vw, 0.25rem);
     text-shadow: var(--text-shadow);
     white-space: nowrap;
+    text-decoration: none !important;
     transition: color var(--transition-default), transform 0.2s ease !important;
 }
 
-.nav-btn:not(.quote-btn):hover, .nav-btn:not(.quote-btn):focus, .nav-btn:not(.quote-btn).active {
-    transform: translateY(-2px);
+.nav-btn:not(.quote-btn):hover, .nav-btn:not(.quote-btn):focus, .nav-btn:not(.quote-btn).active, .nav-btn:not(.quote-btn).current-page {
+    transform: translateY(-.15em) scale(1.05) !important;
     color: var(--accent) !important;
 }
 
@@ -297,6 +297,10 @@ body.dark-mode .logo-background { background-image: url('res/LOGO.png'); }
     min-height: 100vh;
 }
 
+.contact-page #section1 {
+    min-height: 50vh !important;
+}
+
 /* Glass Effect Containers */
 .glass-container {
     width: 95%;
@@ -317,6 +321,64 @@ body.dark-mode .logo-background { background-image: url('res/LOGO.png'); }
     align-items: stretch;
 }
 
+/* Company Info Centering and Wrapping */
+.company-info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.company-info-container .about-column-wrapper {
+    width: fit-content !important; /* Adjusted to fit content instead of fixed 120% */
+    min-width: 300px; /* Ensure a minimum presence */
+}
+
+.company-details-box {
+    padding: 1.5rem 3.5rem 1.5rem 1.8rem !important; /* Increased right padding to 3rem while keeping others */
+    font-size: 0.8em !important; /* 20% smaller than parent/default */
+    text-align: center;
+}
+
+.company-name-container {
+    white-space: nowrap;
+}
+
+/* Alydeea Case Study specific centering */
+.alydeea-page .about-columns {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 90% !important;
+    max-width: 1200px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 1rem !important; /* Reduced top margin since title is now above */
+}
+
+.alydeea-section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.alydeea-section-content h2 {
+    margin-bottom: 2rem;
+}
+
+.alydeea-page .about-column-wrapper {
+    width: fit-content !important;
+    max-width: 100% !important;
+    margin-bottom: 2rem;
+}
+
+.alydeea-page .about-column {
+    width: fit-content !important;
+    padding: 2rem clamp(1.5rem, 5vw, 4rem) !important;
+}
+
 #section2 .about-columns {
     display: flex !important;
     flex-direction: column !important;
@@ -324,7 +386,8 @@ body.dark-mode .logo-background { background-image: url('res/LOGO.png'); }
 }
 
 #section2 .about-column-wrapper {
-    width: 80%;
+    width: fit-content;
+    max-width: 80%;
     margin: 2rem auto 0;
 }
 
@@ -355,7 +418,8 @@ body.dark-mode .logo-background { background-image: url('res/LOGO.png'); }
 
 .about-column-wrapper {
     position: relative;
-    width: 100% !important;
+    width: fit-content !important;
+    max-width: 100% !important;
     height: auto;
     overflow: hidden;
     border-radius: 16px !important;
@@ -369,10 +433,6 @@ body.dark-mode .logo-background { background-image: url('res/LOGO.png'); }
     text-align: center;
 }
 
-.about-column-wrapper:hover {
-    box-shadow: var(--shadow-lg), 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
 .about-column {
     display: flex;
     flex-direction: column;
@@ -382,12 +442,18 @@ body.dark-mode .logo-background { background-image: url('res/LOGO.png'); }
     position: relative;
     overflow: hidden;
     z-index: 2;
-    width: 100%;
+    width: fit-content;
+    min-width: 100%;
     height: 100%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-column-wrapper:hover {
+    box-shadow: var(--shadow-lg), 0 8px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
 }
 
 body.light-mode .about-column {
@@ -435,7 +501,6 @@ body.dark-mode .parallax-background.about { background-image: url('res/work_ligh
     will-change: transform;
 }
 
-/* --- 5. Contact Form --- */
 #section5 {
     display: flex;
     justify-content: center;
@@ -451,6 +516,7 @@ body.dark-mode .parallax-background.about { background-image: url('res/work_ligh
     width: 100%;
     gap: 2rem;
 }
+
 
 form {
     width: 100%;
@@ -500,7 +566,7 @@ body.light-mode select.feedback-input option {
 textarea { min-height: 12rem; }
 
 .submit-btn {
-    height: clamp(2rem, max(2vw, 2vh), 7.5rem);
+    height: clamp(1.6rem, 2.4vw, 6rem);
     font-size: clamp(0.8rem, 1vw, 4rem);
     padding: 0 clamp(0.8rem, 3vw, 1rem);
     border: 0;
@@ -508,16 +574,20 @@ textarea { min-height: 12rem; }
     background-image: linear-gradient(131deg, #ff923c, #c50, #c50, #c50);
     background-size: 300% 100%;
     transition: all 0.3s ease-in-out;
-    margin: 2rem auto 0;
+    margin: 2rem auto 5px;
     font-weight: 500;
     color: var(--light);
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
 }
 
-.submit-btn:hover:enabled {
+.submit-btn:hover:enabled, .submit-btn:hover, .quote-btn:hover {
     box-shadow: 0 .5em .5em -.4em #cc5500ba;
-    background-size: 100% 100%;
-    transform: translateY(-.15em);
+    background-size: 100% 100% !important;
+    transform: translateY(-.15em) scale(1.05) !important;
 }
 
 .contact-image {
@@ -598,7 +668,7 @@ footer {
 }
 
 .quote-btn {
-    height: clamp(1.6rem, max(1.6vw, 1.6vh), 6rem);
+    height: clamp(1.6rem, 2.2vw, 6rem);
     font-size: clamp(0.8rem, 1vw, 4rem) !important;
     padding: 0 clamp(0.64rem, 2.4vw, 0.96rem);
     border: 0 !important;
@@ -607,17 +677,18 @@ footer {
     background-size: 300% 100% !important;
     transition: all 0.3s ease-in-out !important;
     margin-left: 1rem;
+    margin-right: 1.5rem;
     font-weight: 500 !important;
     color: var(--light) !important;
     cursor: pointer;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
 }
 
-.quote-btn:hover {
-    box-shadow: 0 .5em .5em -.4em #cc5500ba;
-    background-size: 100% 100% !important;
-    color: var(--light) !important;
-}
+/* Removed separate .quote-btn:hover as it is now merged above */
 
 .package-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -629,6 +700,7 @@ footer {
     justify-content: space-between;
     align-items: center;
     text-align: center;
+    width: 100% !important;
 }
 
 .package-card:hover {
@@ -696,19 +768,51 @@ footer {
 }
 
 @media (max-width: 768px) {
+    header {
+        padding: 0.5rem 0.5rem !important;
+    }
+    .logo {
+        margin-left: 0.5rem !important;
+    }
+    .logo-wrapper {
+        width: clamp(60px, 15vw, 120px) !important;
+        height: clamp(20px, 3vh, 30px) !important;
+    }
     .nav-links {
-        display: none; /* Mobile menu logic might be needed if not existing */
+        display: flex;
+        gap: 0.2rem;
+        align-items: center;
+        margin-left: auto;
+    }
+    .nav-btn:not(.quote-btn) {
+        font-size: 0.5rem !important;
+        padding: 0.1rem 0.2rem !important;
+    }
+    .about-column-wrapper {
+        margin-top: 1rem !important;
+    }
+    .about-column h2 {
+        font-size: 1.5rem !important;
+    }
+    .about-column h3 {
+        font-size: 1.2rem !important;
+    }
+    .about-column p {
+        font-size: 1rem !important;
+        width: 100% !important;
     }
     /* .quote-btn {
         display: none;
     } */
     .quote-btn {
-        display: block !important;
-        margin-left: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-left: 0.5rem !important;
         margin-right: 0 !important;
-        padding: 0 0.64rem !important;
-        height: 28px !important;
-        font-size: 0.64rem !important;
+        padding: 0 0.4rem !important;
+        height: 20px !important;
+        font-size: 0.45rem !important;
     }
     .whatsapp-widget {
         width: 40px;

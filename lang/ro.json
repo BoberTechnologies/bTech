@@ -1,10 +1,15 @@
 {
   "header": {
     "nav": {
+      "home": "Acasă",
+      "web_design": "Web Design",
+      "seo": "SEO",
+      "automation": "Automatizare",
       "about": "Despre",
       "services": "Servicii",
       "development": "Dezvoltare",
       "contact": "Contact",
+      "case_studies": "Portofoliu",
       "quote": "Cere Ofertă"
     },
     "dot_nav": {
@@ -75,7 +80,7 @@
     "delivery_support_desc": "Suntem aici să te sprijinim la fiecare pas."
   },
   "section_packages": {
-    "title": "Pachete Servicii",
+    "title": "Pachete",
     "startup": {
       "title": "Startups & Antreprenori",
       "focus": "Dezvoltare MVP & Lansare Rapidă",
@@ -121,7 +126,8 @@
         "label": "Tip Proiect",
         "startup": "Startup MVP",
         "growth": "Growth & Automatizare",
-        "enterprise": "Optimizare Enterprise"
+        "enterprise": "Optimizare Enterprise",
+        "not_sure": "Nu sunt sigur"
       },
       "timeline": {
         "label": "Timeline Estimat",
@@ -138,6 +144,110 @@
     "error_default": "Trimitere eșuată.",
     "network_error": "Eroare de rețea. Încearcă din nou.",
     "validation_error": "Te rugăm să completezi toate câmpurile obligatorii."
+  },
+  "footer": {
+    "company": "BOBER TECHNOLOGIES S.R.L.-D.",
+    "follow_us": "Urmărește-ne pe:"
+  },
+  "contact_page": {
+    "company_details": {
+      "name": "BOBER TECHNOLOGIES S.R.L.-D.",
+      "reg_number": "Nr.R.C.: J2025025372002",
+      "cui": "CUI: 51596723",
+      "email": "E-mail: contact@b-tech.ro"
+    }
+  },
+  "alydeea": {
+    "hero_title": "Studiu de Caz",
+    "hero_name": "Alydeea",
+    "visit_button": "Vizitează Website Alydeea",
+    "strategic_title": "O abordare strategică a prezenței digitale",
+    "strategic_desc": "Nu doar un website. O experiență digitală structurată, concepută pentru a comunica claritate, încredere și identitate de brand.",
+    "context_title": "Context",
+    "context_p1": "Fiecare brand ajunge într-un punct în care simpla prezență nu mai este suficientă. Provocarea nu mai este „să exiști online”, ci să comunici clar, să câștigi încrederea instantaneu și să ghidezi utilizatorii către acțiune.",
+    "context_p2": "Alydeea este o companie de top în logistică din Prahova, unde fiabilitatea, percepția și experiența utilizatorului sunt componente critice ale încrederii.",
+    "challenge_title": "Provocarea",
+    "challenge_desc": "Scopul nu a fost pur și simplu de a construi un website, ci de a traduce un brand într-o experiență digitală structurată care să se simtă premium, intenționată și ușor de navigat.",
+    "challenge_item1": "Lipsa unei prezentări digitale structurate",
+    "challenge_item2": "Lipsa unei ierarhii clare a informațiilor",
+    "challenge_item3": "Traseul utilizatorului neoptimizat pentru claritate",
+    "approach_title": "Abordarea Noastră",
+    "approach_desc": "Am abordat acest proiect cu o mentalitate axată pe produs, mai degrabă decât printr-un proces tradițional de web design.",
+    "approach_step1_title": "1. Arhitectura Informației Mai Întâi",
+    "approach_step1_desc": "Înainte de orice parte vizuală, am definit modul în care utilizatorii ar trebui să navigheze prin informații și spre ce decizii ar trebui ghidați.",
+    "approach_step2_title": "2. Structură Orientată spre Conversie",
+    "approach_step2_desc": "Layout-ul a fost conceput pentru a reduce fricțiunea, a îmbunătăți lizibilitatea și a orienta atenția către acțiunile cheie.",
+    "approach_step3_title": "3. Execuție Mobile-First",
+    "approach_step3_desc": "Experiența a fost optimizată în primul rând pentru utilizatorii de mobil, unde au loc majoritatea interacțiunilor.",
+    "approach_step4_title": "4. Consistența Designului",
+    "approach_step4_desc": "Ierarhia vizuală, spațierea și tipografia au fost structurate pentru a crea o senzație calmă, premium, aliniată cu brandul.",
+    "execution_title": "Execuție",
+    "execution_desc": "Implementarea s-a concentrat pe simplitate, performanță și claritate.",
+    "execution_item1": "Structură UI curată, cu încărcare cognitivă minimă",
+    "execution_item2": "Prezentare clară a serviciilor",
+    "execution_item3": "Amplasare constantă a CTA-urilor în toate secțiunile",
+    "execution_item4": "Implementare statică cu încărcare rapidă",
+    "outcome_title": "Rezultat",
+    "outcome_desc": "Rezultatul este o prezență digitală structurată care permite brandului să comunice mai clar și mai profesionist online.",
+    "outcome_item1": "Claritate îmbunătățită a informațiilor",
+    "outcome_item2": "O experiență de navigare mai intuitivă",
+    "outcome_item3": "O percepție mai puternică a brandului prin structură și consistență",
+    "outcome_footer": "Acest proiect reprezintă o fundație care poate fi scalată pe măsură ce brandul evoluează.",
+    "live_project": "Proiect Live",
+    "work_with_us_title": "Lucrează cu noi",
+    "work_with_us_desc": "Ajutăm afacerile să își transforme prezența digitală în sisteme structurate care generează claritate, încredere și oportunități.",
+    "request_analysis": "Solicită o analiză gratuită"
+  },
+  "web_design": {
+    "hero_title": "Design",
+    "modern_title": "Experiențe Digitale Moderne",
+    "modern_desc": "Creăm website-uri care nu doar arată bine, ci și performează. Procesul nostru de design se concentrează pe claritate, experiența utilizatorului și conversie.",
+    "approach_title": "Abordarea Noastră",
+    "strategy_title": "Strategie",
+    "strategy_desc": "Începem prin a înțelege obiectivele tale și publicul tău țintă.",
+    "design_title": "Design",
+    "design_desc": "Design centrat pe utilizator care reflectă identitatea brandului tău.",
+    "launch_title": "Lansare",
+    "launch_desc": "Cod curat și performanță optimizată pentru o lansare perfectă.",
+    "ready_title": "Ești gata să construiești?",
+    "ready_desc": "Transformă-ți prezența digitală astăzi."
+  },
+  "seo_page": {
+    "hero_title": "Optimizare",
+    "visible_title": "Creștere Vizibilă",
+    "visible_desc": "Optimizarea pentru Motoarele de Căutare nu este doar despre clasament, ci despre relevanță și rezultate. Te ajutăm să te conectezi cu publicul potrivit la momentul potrivit.",
+    "strategy_title": "Strategia Noastră",
+    "technical_title": "SEO Tehnic",
+    "technical_desc": "Ne asigurăm că site-ul tău este accesibil, rapid și sigur.",
+    "content_title": "Strategie de Conținut",
+    "content_desc": "Creăm valoare pe care motoarele de căutare și utilizatorii o iubesc.",
+    "analytics_title": "Analiză",
+    "analytics_desc": "Decizii bazate pe date pentru a-ți menține creșterea pe drumul cel bun.",
+    "ready_title": "Devino vizibil",
+    "ready_desc": "Începe să apari în căutări pentru ceea ce contează cel mai mult pentru afacerea ta."
+  },
+  "automation_page": {
+    "hero_accent": "Automatizarea",
+    "hero_title": "afacerii",
+    "efficiency_title": "Eficiență prin Tehnologie",
+    "efficiency_desc": "Nu mai pierde timpul cu sarcini repetitive. Soluțiile noastre de automatizare sunt concepute pentru a-ți elibera echipa și a optimiza fluxurile de lucru.",
+    "solutions_title": "Soluțiile Noastre",
+    "workflow_title": "Design Flux de Lucru",
+    "workflow_desc": "Cartografierea și optimizarea proceselor de afaceri.",
+    "integration_title": "Integrare",
+    "integration_desc": "Conectarea instrumentelor tale pentru a lucra împreună fără probleme.",
+    "tools_title": "Instrumente Personalizate",
+    "tools_desc": "Construirea software-ului specific de care are nevoie eficiența ta.",
+    "ready_title": "Scalează mai rapid",
+    "ready_desc": "Automatizează azi, condu mâine."
+  },
+  "portfolio_page": {
+    "hero_title": "Portofoliu",
+    "our_work": "Portofoliul Nostru",
+    "alydeea_desc": "O abordare strategică a prezenței digitale. Cum am transformat experiența online a unei companii de logistică.",
+    "view_case_study": "Vezi Proiectul",
+    "ready_title": "Ești gata să începi?",
+    "ready_desc": "Hai să construim ceva grozav împreună."
   },
   "whatsapp_message": "Salut B-Tech, sunt interesat de o soluție software pentru afacerea mea. Putem discuta?"
 }

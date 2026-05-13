@@ -1,10 +1,15 @@
 {
   "header": {
     "nav": {
+      "home": "Home",
+      "web_design": "Web Design",
+      "seo": "SEO",
+      "automation": "Automation",
       "about": "About",
       "services": "Services",
       "development": "Development",
       "contact": "Contact",
+      "case_studies": "Portfolio",
       "quote": "Get a Quote"
     },
     "dot_nav": {
@@ -75,7 +80,7 @@
     "delivery_support_desc": "We're here to help you every step of the way."
   },
   "section_packages": {
-    "title": "Service Packages",
+    "title": "Packages",
     "startup": {
       "title": "Startups & Entrepreneurs",
       "focus": "MVP Development & Rapid Launch",
@@ -121,7 +126,8 @@
         "label": "Project Type",
         "startup": "Startup MVP",
         "growth": "Growth & Automation",
-        "enterprise": "Enterprise Optimization"
+        "enterprise": "Enterprise Optimization",
+        "not_sure": "I'm not sure"
       },
       "timeline": {
         "label": "Estimated Timeline",
@@ -138,6 +144,110 @@
     "error_default": "Submission failed.",
     "network_error": "Network error. Please try again.",
     "validation_error": "Please fill in all required fields."
+  },
+  "footer": {
+    "company": "BOBER TECHNOLOGIES S.R.L.-D.",
+    "follow_us": "Follow us on:"
+  },
+  "contact_page": {
+    "company_details": {
+      "name": "BOBER TECHNOLOGIES S.R.L.-D.",
+      "reg_number": "Nr.R.C.: J2025025372002",
+      "cui": "CUI: 51596723",
+      "email": "E-mail: contact@b-tech.ro"
+    }
+  },
+  "alydeea": {
+    "hero_title": "Case Study",
+    "hero_name": "Alydeea",
+    "visit_button": "Visit Alydeea Website",
+    "strategic_title": "A Strategic Approach to Digital Presence",
+    "strategic_desc": "Not just a website. A structured digital experience designed to communicate clarity, trust, and brand identity.",
+    "context_title": "Context",
+    "context_p1": "Every brand reaches a point where presence alone is not enough. The challenge is no longer “to exist online”, but to communicate clearly, build trust instantly, and guide users toward action.",
+    "context_p2": "Alydeea is a top logistics company in Prahova where reliability, perception, and user experience are critical components of trust.",
+    "challenge_title": "The challenge",
+    "challenge_desc": "The goal was not simply to build a website, but to translate a brand into a structured digital experience that feels premium, intentional, and easy to navigate.",
+    "challenge_item1": "Lack of structured digital presentation",
+    "challenge_item2": "No clear hierarchy of information",
+    "challenge_item3": "User journey not optimized for clarity",
+    "approach_title": "Our Approach",
+    "approach_desc": "We approached this project with a product-thinking mindset rather than a traditional web design process.",
+    "approach_step1_title": "1. Information Architecture First",
+    "approach_step1_desc": "Before any visual work, we defined how users should move through information and what decisions they should be guided toward.",
+    "approach_step2_title": "2. Conversion-Oriented Structure",
+    "approach_step2_desc": "The layout was designed to reduce friction, improve readability, and guide attention toward key actions.",
+    "approach_step3_title": "3. Mobile-First Execution",
+    "approach_step3_desc": "The experience was optimized primarily for mobile users, where most traffic and interactions happen.",
+    "approach_step4_title": "4. Design Consistency",
+    "approach_step4_desc": "Visual hierarchy, spacing, and typography were structured to create a calm, premium feel aligned with the brand.",
+    "execution_title": "Execution",
+    "execution_desc": "The implementation focused on simplicity, performance, and clarity.",
+    "execution_item1": "Clean UI structure with minimal cognitive load",
+    "execution_item2": "Clear service presentation",
+    "execution_item3": "Consistent CTA placement across sections",
+    "execution_item4": "Fast-loading static implementation",
+    "outcome_title": "Outcome",
+    "outcome_desc": "The result is a structured digital presence that allows the brand to communicate more clearly and professionally online.",
+    "outcome_item1": "Improved clarity of information",
+    "outcome_item2": "More intuitive navigation experience",
+    "outcome_item3": "Stronger brand perception through structure and consistency",
+    "outcome_footer": "This project represents a foundation that can scale as the brand evolves.",
+    "live_project": "Live Project",
+    "work_with_us_title": "Work with us",
+    "work_with_us_desc": "We help businesses transform their digital presence into structured systems that generate clarity, trust, and leads.",
+    "request_analysis": "Request a free analysis"
+  },
+  "web_design": {
+    "hero_title": "Design",
+    "modern_title": "Modern Digital Experiences",
+    "modern_desc": "We create websites that don't just look good—they perform. Our design process focuses on clarity, user experience, and conversion.",
+    "approach_title": "Our Approach",
+    "strategy_title": "Strategy",
+    "strategy_desc": "We start by understanding your goals and your audience.",
+    "design_title": "Design",
+    "design_desc": "User-centric design that reflects your brand identity.",
+    "launch_title": "Launch",
+    "launch_desc": "Clean code and optimized performance for a perfect launch.",
+    "ready_title": "Ready to build?",
+    "ready_desc": "Transform your digital presence today."
+  },
+  "seo_page": {
+    "hero_title": "Optimization",
+    "visible_title": "Visible Growth",
+    "visible_desc": "Search Engine Optimization is not just about rankings—it's about relevance and results. We help you connect with the right audience at the right time.",
+    "strategy_title": "Our Strategy",
+    "technical_title": "Technical SEO",
+    "technical_desc": "We ensure your site is crawlable, fast, and secure.",
+    "content_title": "Content Strategy",
+    "content_desc": "Creating value that search engines and users love.",
+    "analytics_title": "Analytics",
+    "analytics_desc": "Data-driven decisions to keep your growth on track.",
+    "ready_title": "Get discovered",
+    "ready_desc": "Start ranking for what matters most to your business."
+  },
+  "automation_page": {
+    "hero_accent": "Business",
+    "hero_title": "Automation",
+    "efficiency_title": "Efficiency through Tech",
+    "efficiency_desc": "Stop wasting time on repetitive tasks. Our automation solutions are designed to free your team and optimize your business workflows.",
+    "solutions_title": "Our Solutions",
+    "workflow_title": "Workflow Design",
+    "workflow_desc": "Mapping and optimizing your business processes.",
+    "integration_title": "Integration",
+    "integration_desc": "Connecting your tools to work together seamlessly.",
+    "tools_title": "Custom Tools",
+    "tools_desc": "Building the specific software your efficiency needs.",
+    "ready_title": "Scale faster",
+    "ready_desc": "Automate today, lead tomorrow."
+  },
+  "portfolio_page": {
+    "hero_title": "Portfolio",
+    "our_work": "Our Work",
+    "alydeea_desc": "A strategic approach to digital presence. How we transformed a logistics company's online experience.",
+    "view_case_study": "View Project",
+    "ready_title": "Ready to start?",
+    "ready_desc": "Let's build something great together."
   },
   "whatsapp_message": "Hi B-Tech, I'm interested in a software solution for my business. Can we talk?"
 }
