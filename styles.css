@@ -454,14 +454,17 @@ body.dark-mode .parallax-background.about { background-image: url('res/work_ligh
 
 form {
     width: 100%;
-    max-width: 50rem;
+    max-width: 40rem;
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
 }
 
 form h2 {
-    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    font-size: clamp(1rem, 1.5vw, 2.5rem) !important;
     margin-bottom: 2rem;
+    text-align: left;
+    line-height: 1.2;
 }
 
 .feedback-input {

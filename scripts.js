@@ -70,7 +70,19 @@ const BTechApp = (function() {
                 document.querySelectorAll('[data-i18n-key]').forEach(el => {
                     const key = el.getAttribute('data-i18n-key');
                     const value = key.split('.').reduce((o, i) => (o ? o[i] : undefined), dict);
-                    if (value) el.textContent = value;
+                    if (value) {
+                        if (el.hasAttribute('data-i18n-accent-first')) {
+                            const words = value.split(' ');
+                            if (words.length > 0) {
+                                const firstWord = words.shift();
+                                el.innerHTML = `<span class="accent">${firstWord}</span> ${words.join(' ')}`;
+                            } else {
+                                el.textContent = value;
+                            }
+                        } else {
+                            el.textContent = value;
+                        }
+                    }
                 });
 
                 document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
