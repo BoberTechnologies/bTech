@@ -32,7 +32,8 @@ const BTechApp = (function() {
         contactForm: document.getElementById('contact-form'),
         scrollArrow: document.getElementById('scroll-arrow'),
         parallaxImages: document.querySelectorAll('.parallax-img'),
-        toggleContainer: document.querySelector('.toggle-container')
+        toggleContainer: document.querySelector('.toggle-container'),
+        whatsappWidget: document.querySelector('.whatsapp-widget')
     };
 
     // --- Utilities ---
@@ -83,6 +84,7 @@ const BTechApp = (function() {
                 document.documentElement.setAttribute('lang', lang);
                 
                 this.updateToggleIcon(lang);
+                this.updateWhatsAppMessage(dict);
             } catch (error) {
                 console.error('Failed to load language:', error);
             }
@@ -93,6 +95,19 @@ const BTechApp = (function() {
             if (langIcon) {
                 langIcon.src = `res/icons/${lang}.png`;
                 langIcon.alt = lang === 'en' ? 'English flag' : 'Romanian flag';
+            }
+        },
+
+        updateWhatsAppMessage(dict) {
+            if (ui.whatsappWidget) {
+                // Use dict.whatsapp_message if available, otherwise fallback to hardcoded translations
+                const message = dict?.whatsapp_message || (state.currentLang === 'ro' 
+                    ? "Salut B-Tech, sunt interesat de o soluție software pentru afacerea mea. Putem discuta?" 
+                    : "Hi B-Tech, I'm interested in a software solution for my business. Can we talk?");
+                
+                const phoneNumber = "40733216828";
+                const encodedMessage = encodeURIComponent(message);
+                ui.whatsappWidget.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
             }
         },
 
@@ -353,7 +368,7 @@ const BTechApp = (function() {
 
             // Validation
             const values = Object.fromEntries(formData.entries());
-            if (!values.name || !values.email || !values.text) {
+            if (!values.name || !values.email || !values.text || !values.project_type || !values.timeline) {
                 alert(status.validation_error || "Please fill in all required fields.");
                 return;
             }

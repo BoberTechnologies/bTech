@@ -138,5 +138,6 @@
     "error_default": "Submission failed.",
     "network_error": "Network error. Please try again.",
     "validation_error": "Please fill in all required fields."
-  }
-} 
+  },
+  "whatsapp_message": "Hi B-Tech, I'm interested in a software solution for my business. Can we talk?"
+}

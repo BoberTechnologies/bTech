@@ -138,5 +138,6 @@
     "error_default": "Trimitere eșuată.",
     "network_error": "Eroare de rețea. Încearcă din nou.",
     "validation_error": "Te rugăm să completezi toate câmpurile obligatorii."
-  }
-} 
+  },
+  "whatsapp_message": "Salut B-Tech, sunt interesat de o soluție software pentru afacerea mea. Putem discuta?"
+}

@@ -433,14 +433,14 @@
                     <input name="name" type="text" class="feedback-input" data-i18n-placeholder="section5.form.name" required/>   
                     <input name="email" type="email" class="feedback-input" data-i18n-placeholder="section5.form.email" required/>
                     
-                    <select name="project_type" id="project_type" class="feedback-input">
+                    <select name="project_type" id="project_type" class="feedback-input" required>
                         <option value="" disabled selected data-i18n-key="section5.form.project_type.label"></option>
                         <option value="startup" data-i18n-key="section5.form.project_type.startup"></option>
                         <option value="growth" data-i18n-key="section5.form.project_type.growth"></option>
                         <option value="enterprise" data-i18n-key="section5.form.project_type.enterprise"></option>
                     </select>
 
-                    <select name="timeline" class="feedback-input">
+                    <select name="timeline" class="feedback-input" required>
                         <option value="" disabled selected data-i18n-key="section5.form.timeline.label"></option>
                         <option value="immediate" data-i18n-key="section5.form.timeline.immediate"></option>
                         <option value="short" data-i18n-key="section5.form.timeline.short"></option>
@@ -463,7 +463,7 @@
         </div>
 
         <!-- WhatsApp Floating Widget -->
-        <a href="https://wa.me/40733216828?text=Hi%20B-Tech,%20I'm%20interested%20in%20a%20software%20solution%20for%20my%20business.%20Can%20we%20talk?" 
+        <a href="https://wa.me/40733216828" 
            class="whatsapp-widget" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp">
             <img src="res/icons/whatsapp.png" alt="WhatsApp Icon">
         </a>

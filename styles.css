@@ -195,9 +195,13 @@ body.dark-mode .logo-background { background-image: url('res/LOGO.png'); }
     transition: color var(--transition-default), transform 0.2s ease !important;
 }
 
-.nav-btn:hover, .nav-btn:focus, .nav-btn.active {
+.nav-btn:not(.quote-btn):hover, .nav-btn:not(.quote-btn):focus, .nav-btn:not(.quote-btn).active {
     transform: translateY(-2px);
     color: var(--accent) !important;
+}
+
+.quote-btn:hover {
+    transform: translateY(-.15em) scale(1.05) !important;
 }
 
 .nav-btn.hidden {
@@ -592,7 +596,7 @@ footer {
 
 .quote-btn {
     height: clamp(1.6rem, max(1.6vw, 1.6vh), 6rem);
-    font-size: clamp(0.32rem, 0.48vw, 1.6rem);
+    font-size: clamp(0.8rem, 1vw, 4rem) !important;
     padding: 0 clamp(0.64rem, 2.4vw, 0.96rem);
     border: 0 !important;
     border-radius: 5rem !important;
@@ -609,7 +613,7 @@ footer {
 .quote-btn:hover {
     box-shadow: 0 .5em .5em -.4em #cc5500ba;
     background-size: 100% 100% !important;
-    transform: translateY(-.15em) scale(1.05) !important;
+    color: var(--light) !important;
 }
 
 .package-card {
