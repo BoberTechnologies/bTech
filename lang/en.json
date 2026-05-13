@@ -116,7 +116,7 @@
     "send": "Send",
     "form": {
       "name": "Full Name",
-      "email": "Company Email",
+      "email": "Email",
       "project_type": {
         "label": "Project Type",
         "startup": "Startup MVP",

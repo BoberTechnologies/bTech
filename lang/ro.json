@@ -116,7 +116,7 @@
     "send": "Trimite",
     "form": {
       "name": "Nume Complet",
-      "email": "Email Companie",
+      "email": "Email",
       "project_type": {
         "label": "Tip Proiect",
         "startup": "Startup MVP",
