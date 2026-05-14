@@ -322,12 +322,16 @@ body.dark-mode .logo-background { background-image: url('res/LOGO.png'); }
 }
 
 /* Company Info Centering and Wrapping */
+#company-info {
+    min-height: 50vh;
+}
+
 .company-info-container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 1rem;
+    margin: 1rem;
 }
 
 .company-info-container .about-column-wrapper {

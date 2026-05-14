@@ -193,12 +193,12 @@ const BTechApp = (function() {
                         const currentPath = window.location.pathname;
                         // Normalize paths for comparison
                         const normalizedBtnPath = buttonHref.startsWith('/') ? buttonHref : '/' + buttonHref;
-                        const normalizedCurrentPath = currentPath === '/' ? '/index.html' : currentPath;
+                        const normalizedCurrentPath = currentPath === '/' ? '/home.html' : currentPath;
 
                         // Check for exact match or if current page is a sub-resource of the nav link
                         // (e.g. /portfolio/alydeea.html matches /portfolio.html)
                         const isExactMatch = normalizedCurrentPath.endsWith(normalizedBtnPath);
-                        const isParentMatch = normalizedBtnPath !== '/index.html' && normalizedCurrentPath.includes(normalizedBtnPath.replace('.html', ''));
+                        const isParentMatch = normalizedBtnPath !== '/home.html' && normalizedCurrentPath.includes(normalizedBtnPath.replace('.html', ''));
 
                         if (isExactMatch || isParentMatch) {
                             button.classList.add('current-page');
@@ -213,9 +213,9 @@ const BTechApp = (function() {
                     const target = document.getElementById(targetId);
                     if (!target) {
                         // If target not on this page, let the default behavior happen (for <a>)
-                        // or redirect to index.html#targetId (for <button>)
+                        // or redirect to home.html#targetId (for <button>)
                         if (button.tagName === 'BUTTON') {
-                            window.location.href = `index.html#${targetId}`;
+                            window.location.href = `home.html#${targetId}`;
                         }
                         return;
                     }
@@ -243,7 +243,7 @@ const BTechApp = (function() {
                     
                     const target = document.getElementById(targetId);
                     if (!target) {
-                        window.location.href = `index.html?package=${pkg}#${targetId}`;
+                        window.location.href = `home.html?package=${pkg}#${targetId}`;
                         return;
                     }
 
@@ -358,7 +358,7 @@ const BTechApp = (function() {
             });
 
             if (ui.dotNavbar) {
-                const isHomePage = window.location.pathname === '/' || window.location.pathname.endsWith('index.html');
+                const isHomePage = window.location.pathname === '/' || window.location.pathname.endsWith('home.html');
                 ui.dotNavbar.classList.toggle('hidden', !isHomePage || current === 'section1');
             }
         },
