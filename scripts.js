@@ -445,6 +445,17 @@ const BTechApp = (function() {
                     projectTypeSelect.value = pkg;
                 }
             }
+
+            const subject = params.get('subject');
+            if (subject === 'free_consultancy') {
+                const textarea = document.querySelector('textarea[name="text"]');
+                const message = state.currentLang === 'ro'
+                    ? "Bună ziua! Aș dori să obțin o sesiune de consultanță gratuită."
+                    : "Hello! I would like to get a free consultancy session.";
+                if (textarea) {
+                    textarea.value = message;
+                }
+            }
         },
 
         async handleSubmit(e) {

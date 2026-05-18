@@ -63,7 +63,13 @@
     "database_management": "Database",
     "management": "Management",
     "database_optimization": "Database",
-    "optimization": "Optimization"
+    "optimization": "Optimization",
+    "cta": {
+      "text_start": "Get your",
+      "free": "free",
+      "text_end": "consultancy session right now",
+      "button": "Get"
+    }
   },
   "section4": {
     "development": "Development",

@@ -63,7 +63,13 @@
     "database_management": "Gestionare",
     "management": "Baze de date",
     "database_optimization": "Optimizare",
-    "optimization": "Baze de date"
+    "optimization": "Baze de date",
+    "cta": {
+      "text_start": "Obține sesiunea ta de consultanță",
+      "free": "gratuită",
+      "text_end": "chiar acum",
+      "button": "Obține"
+    }
   },
   "section4": {
     "development": "Dezvoltarea",

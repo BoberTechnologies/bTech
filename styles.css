@@ -875,3 +875,93 @@ body.dark-mode #theme-toggle img[src*="dark"] { opacity: 1; }
     0%, 100% { transform: translateX(-50%) translateY(0); }
     50% { transform: translateX(-50%) translateY(-10px); }
 }
+/* --- 10. Services CTA --- */
+.services-cta-container {
+    margin-top: 4rem;
+    text-align: center;
+    width: 100%;
+}
+
+.services-cta-text {
+    display: block;
+    text-align: center !important;
+    width: 100% !important;
+    font-size: clamp(1rem, calc(0.8rem + 1vw), 5rem) !important;
+    margin-bottom: 1rem;
+}
+
+.cta-arrow-button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.spiral-arrow-wrapper {
+    display: block;
+    width: 60px;
+    height: 80px;
+    margin: 0 auto;
+    position: relative;
+    overflow: visible;
+}
+
+.spiral-arrow {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.spiral-arrow .spiral-path {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: drawSpiral 2s ease forwards;
+}
+
+.spiral-arrow .arrow-head {
+    opacity: 0;
+    animation: fadeIn 0.1s ease 1.8s forwards;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@keyframes drawSpiral {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.services-cta-btn {
+    height: clamp(1.6rem, 2.2vw, 6rem);
+    font-size: clamp(0.8rem, 1vw, 4rem) !important;
+    padding: 0 clamp(0.64rem, 2.4vw, 0.96rem) !important;
+    border: 0 !important;
+    border-radius: 5rem !important;
+    background-image: linear-gradient(131deg, #ff923c, #c50, #c50, #c50) !important;
+    background-size: 300% 100% !important;
+    transition: all 0.3s ease-in-out !important;
+    font-weight: 500 !important;
+    color: var(--light) !important;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none !important;
+    margin: 0 !important;
+    width: fit-content !important;
+}
+
+.services-cta-btn:hover {
+    box-shadow: 0 .5em .5em -.4em #cc5500ba;
+    background-size: 100% 100% !important;
+    transform: translateY(-.15em) scale(1.05) !important;
+}
+
+@media (max-width: 768px) {
+    .services-cta-text {
+        font-size: 1.1rem !important;
+    }
+}
