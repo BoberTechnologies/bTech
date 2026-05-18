@@ -38,8 +38,8 @@
   "section3": {
     "services": "Services",
     "software_development": "Software Development",
-    "custom": "Custom",
-    "software_solutions": "Software solutions",
+    "custom": "Software",
+    "software_solutions": "Solutions",
     "mobile": "Mobile",
     "applications_mobile": "Applications",
     "web": "Web",
@@ -53,7 +53,6 @@
     "process_optimization": "Process Optimization",
     "data": "Data",
     "analytics": "Analytics",
-    "business_intelligence": "Intelligence",
     "software_architecture": "Software",
     "architecture_design": "Architecture & Design",
     "other": "Other",

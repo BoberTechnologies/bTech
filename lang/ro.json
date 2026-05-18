@@ -39,7 +39,7 @@
     "services": "Servicii",
     "software_development": "Dezvoltare Software",
     "custom": "Soluții",
-    "software_solutions": "Software personalizate",
+    "software_solutions": "Software",
     "mobile": "Aplicații",
     "applications_mobile": "Mobile",
     "web": "Aplicații",
@@ -53,7 +53,6 @@
     "process_optimization": "Procese de afaceri",
     "data": "Analiza",
     "analytics": "Datelor",
-    "business_intelligence": "Business Intelligence",
     "software_architecture": "Arhitectură ",
     "architecture_design": "Software și Design",
     "other": "Altele",
@@ -82,7 +81,7 @@
   "section_packages": {
     "title": "Pachete",
     "startup": {
-      "title": "Startups & Antreprenori",
+      "title": "Startup-uri & Antreprenori",
       "focus": "Dezvoltare MVP & Lansare Rapidă",
       "feature1_word1": "Design",
       "feature1_rest": "UI/UX",
